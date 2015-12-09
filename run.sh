@@ -4,7 +4,7 @@ string="ILDS"
 if [ "$1" == "ILDS" ]
 then
 	cd ../Solver/
-	./run.sh 1200000 < ../FileFormats/add_times > ../Demo/ILDS.output
+	./run.sh 10000 < ../FileFormats/add_times > ../Demo/ILDS.output
 	cd ../Validator
 	./run.sh ILDS
 else	
