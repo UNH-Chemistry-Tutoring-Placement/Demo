@@ -1,15 +1,20 @@
 #!/bin/bash
 string="ILDS"
 
-if [ "$1" == "ILDS" ]
+alg=$1
+input=$2
+output=$3
+
+
+if [ "$alg" == "Local" ]
 then
-	cd ../Solver/
-	./run.sh 10000 < ../FileFormats/add_times > ../Demo/ILDS.output
-	cd ../Validator
-	./run.sh ILDS
-else	
-	cd ../sLocal-Search/
-	node slocalsearch.js 10 ../Demo/Local.output <../FileFormats/add_times
-	cd ../Validator
-	./run.sh Local
+    cd ../sLocal-Search/
+    node slocalsearch.js 10 "../Demo/$output" "../Demo/$input"
+    cd ../Validator
+    ./run.sh $alg $input $output
+else
+    cd ../Solver/
+    ./run.sh 10000 < "../Demo/$input" > "../Demo/$output"
+    cd ../Validator
+    ./run.sh $alg $input $output
 fi
